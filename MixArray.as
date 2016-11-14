@@ -6,11 +6,12 @@ package
 	import flash.utils.ByteArray;
 	
 	import samples.Mix.CModule;
-	import samples.Mix.StartCMixArray;
 	import samples.Mix.ram;
 	import samples.Mix.DeleteBytes;
 	import samples.Mix.StartCMixArray;
 	import samples.Mix.StartMixStr;
+	import samples.Mix.StartMixKey;
+	import samples.Mix.StartMixByKey;
 
 	public class MixArray extends Sprite
 	{
@@ -33,23 +34,34 @@ package
 	      	tf.height = stage.stageHeight;
 	      	addChild(tf);
 
+	      	//var ptr:int = CModule.malloc(4);
+	      	//CModule.writeString(ptr,"abdc");
+	      	//var result:String = StartMixByKey("abdc");
+	      	//tf.appendText("result:" +"\n" +result + "\n");
+	      	//result = CModule.readString(ptr,64);
+	      	//tf.appendText("read:"+result);
+
+	      	//
+	      	
+
+
 	      	//测试代码
-	      	var writeIntVector:Vector.<int> = Vector.<int>([1,2,3,4,5,6,7,8,20,30,40,50]);
+	      	//var writeIntVector:Vector.<int> = Vector.<int>([1,2,3,4,5,6,7,8,20,30,40,50]);
 	      	
 	      	//调用混淆函数
-	      	var results:Vector.<int> = getMixArray(writeIntVector);
+	      	//var results:Vector.<int> = getMixArray(writeIntVector);
 
 	      	//字符串地址
-	      	var strPtr:int = CModule.malloc(4);
-	      	CModule.writeString(strPtr,"zhuhai");
+	      	//var strPtr:int = CModule.malloc(4);
+	      	//CModule.writeString(strPtr,"zhuhai");
 
-	      	var result:String = StartMixStr(strPtr);
-	      	tf.appendText(result + "\n");
+	      	//var result:String = StartMixStr(strPtr);
+	      	//tf.appendText(result + "\n");
 
-	      	ram.position = strPtr;
+	      	//ram.position = strPtr;
 	      	//打印
-	      	result = CModule.readString(strPtr,20);
-	      	tf.appendText(result + "\n");
+	      	//result = CModule.readString(strPtr,20);
+	      	//tf.appendText(result + "\n");
 	    }
 
 	    public function getMixArray(source:Vector.<int>):Vector.<int>
