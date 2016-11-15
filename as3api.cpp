@@ -17,11 +17,8 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-#include <stdlib.h>
 #include "AS3/AS3.h"
 #include "md5.h"
-// #include "Md5Create.h"
-#include <string>
 
 
 // First we mark the function declaration with a GCC attribute specifying the
@@ -47,109 +44,109 @@
 
 
 
-void StartCMixArray() __attribute__((used,
-    annotate("as3sig:public function StartCMixArray(ptr:int,arrayLen:int):int"),
-    annotate("as3package:samples.Mix")));
+// void StartCMixArray() __attribute__((used,
+//     annotate("as3sig:public function StartCMixArray(ptr:int,arrayLen:int):int"),
+//     annotate("as3package:samples.Mix")));
 
-void StartCMixArray()
-{
-    // printf("%s\n", "fafaffa");
-    int aLen = 0;
-    AS3_GetScalarFromVar(aLen,arrayLen);
+// void StartCMixArray()
+// {
+//     // printf("%s\n", "fafaffa");
+//     int aLen = 0;
+//     AS3_GetScalarFromVar(aLen,arrayLen);
 
-    int *bytes = new int[aLen];
-    //测试
-    int count = 0;
+//     int *bytes = new int[aLen];
+//     //测试
+//     int count = 0;
 
-    //将as的参数保存为c的可用参数
-    AS3_GetScalarFromVar(bytes,ptr);
+//     //将as的参数保存为c的可用参数
+//     AS3_GetScalarFromVar(bytes,ptr);
 
-    //对数组元素进行处理
- 	for (int i = 0; i < aLen; ++i)
- 	{
- 		/* code */
- 		bytes[i] *= 10;
- 		count += bytes[i];
- 	}
+//     //对数组元素进行处理
+//  	for (int i = 0; i < aLen; ++i)
+//  	{
+//  		/* code */
+//  		bytes[i] *= 10;
+//  		count += bytes[i];
+//  	}
 
-    // Md5Create *m = new Md5Create();
-    // m->CreateMD5();
+//     // Md5Create *m = new Md5Create();
+//     // m->CreateMD5();
     
-    //定义一个as类型变量，并赋值C++变量给as变量
-    AS3_DeclareVar(asResult,int);
-    AS3_CopyScalarToVar(asResult,bytes)
+//     //定义一个as类型变量，并赋值C++变量给as变量
+//     AS3_DeclareVar(asResult,int);
+//     AS3_CopyScalarToVar(asResult,bytes)
 
-    //返回这个变量
-	AS3_ReturnAS3Var(asResult);
-}
+//     //返回这个变量
+// 	AS3_ReturnAS3Var(asResult);
+// }
 
 
-void StartMixStr() __attribute__((used,
-    annotate("as3sig:public function StartMixStr(ptr:int):String"),
-    annotate("as3package:samples.Mix")));
+// void StartMixStr() __attribute__((used,
+//     annotate("as3sig:public function StartMixStr(ptr:int):String"),
+//     annotate("as3package:samples.Mix")));
 
-void StartMixStr()
-{
-    //
-    char* ss;
-    AS3_GetScalarFromVar(ss,ptr);
+// void StartMixStr()
+// {
+//     //
+//     char* ss;
+//     AS3_GetScalarFromVar(ss,ptr);
 
-    MD5 md5(ss);
-    std::string result= md5.md5();
+//     MD5 md5(ss);
+//     std::string result= md5.md5();
 
-    const char* c = result.c_str();
+//     const char* c = result.c_str();
 
-    AS3_DeclareVar(asString,String);
-    AS3_CopyCStringToVar(asString,c,32);
-    //返回这个变量
-    AS3_ReturnAS3Var(asString);
+//     AS3_DeclareVar(asString,String);
+//     AS3_CopyCStringToVar(asString,c,32);
+//     //返回这个变量
+//     AS3_ReturnAS3Var(asString);
     
-    //
-    // int result = 100;
-    // AS3_DeclareVar(asResult,int);
-    // AS3_CopyScalarToVar (asResult,result)
-}
+//     //
+//     // int result = 100;
+//     // AS3_DeclareVar(asResult,int);
+//     // AS3_CopyScalarToVar (asResult,result)
+// }
  
 
-void StartMixKey() __attribute__((used,
-    annotate("as3sig:public function StartMixKey(keyPtr:int):String"),
+// void StartMixKey() __attribute__((used,
+//     annotate("as3sig:public function StartMixKey(keyPtr:int):String"),
+//     annotate("as3package:samples.Mix")));
+
+// void StartMixKey()
+// {
+//     char* privateKey = "838ca6c33d364c477dbff6fed2767e17";
+
+//     const char* loginKey;
+//     AS3_GetScalarFromVar(loginKey,keyPtr);
+
+//     const char* publicKey;
+
+//     std::string a = privateKey;
+//     std::string b = loginKey;
+//     std::string c = a + b;
+//     publicKey = c.c_str();//
+
+//     MD5 md5(publicKey);
+//     std::string result = md5.md5();
+//     const char* r = result.c_str();
+//     loginKey = r;
+
+//     ///返回处理的md5
+//     AS3_DeclareVar(asString,String);
+//     AS3_CopyCStringToVar(asString,r,64);
+//     AS3_ReturnAS3Var(asString);
+//     // AS3_ReturnAS3Var("fa");
+// }
+
+
+
+void StartMd5ByKey() __attribute__((used,
+    annotate("as3sig:public function StartMd5ByKey(key:String):String"),
     annotate("as3package:samples.Mix")));
 
-void StartMixKey()
+void StartMd5ByKey()
 {
-    char* privateKey = "838ca6c33d364c477dbff6fed2767e17";
-
-    const char* loginKey;
-    AS3_GetScalarFromVar(loginKey,keyPtr);
-
-    const char* publicKey;
-
-    std::string a = privateKey;
-    std::string b = loginKey;
-    std::string c = a + b;
-    publicKey = c.c_str();//
-
-    MD5 md5(publicKey);
-    std::string result = md5.md5();
-    const char* r = result.c_str();
-    loginKey = r;
-
-    ///返回处理的md5
-    AS3_DeclareVar(asString,String);
-    AS3_CopyCStringToVar(asString,r,64);
-    AS3_ReturnAS3Var(asString);
-    // AS3_ReturnAS3Var("fa");
-}
-
-
-
-void StartMixByKey() __attribute__((used,
-    annotate("as3sig:public function StartMixByKey(key:String):String"),
-    annotate("as3package:samples.Mix")));
-
-void StartMixByKey()
-{
-    char* privateKey = "838ca6c33d364c477dbff6fed2767e17";
+    const char* privateKey = "838ca6c33d364c477dbff6fed2767e17";
 
     const char* loginKey;
     //as变量传给c++
@@ -160,7 +157,7 @@ void StartMixByKey()
     //loginKey + privateKey拼接
     std::string a = privateKey;
     std::string b = loginKey;
-    std::string c = a + b;
+    std::string c = b + a;
     publicKey = c.c_str();//
 
     //进行md5操作
@@ -170,66 +167,37 @@ void StartMixByKey()
 
     ///返回处理的md5
     AS3_DeclareVar(asString,String);
-    AS3_CopyCStringToVar(asString,r,64);
+    AS3_CopyCStringToVar(asString,r,32);
     AS3_ReturnAS3Var(asString);
 }
 
-void StartMixByByteAndKey() __attribute__((used,
-    annotate("as3sig:public function StartMixByByteAndKey(ptr:int,key:String):int"),
+
+void StartMixByteArrayAndKey() __attribute__((used,
+    annotate("as3sig:public function StartMixByteArrayAndKey(ptr:int,len:int,key:String):void"),
     annotate("as3package:samples.Mix")));
 
-void StartMixByByteAndKey()
+void StartMixByteArrayAndKey()
 {
-    char* privateKey = "838ca6c33d364c477dbff6fed2767e17";
+    int aLen = 0;
 
-    const char* loginKey;
+    AS3_GetScalarFromVar(aLen,len);
+
+    const char* publicKey;
+
     //as变量传给c++
-    AS3_MallocString(loginKey,key);
-    char * buf;
+    AS3_MallocString(publicKey,key);
+
+    int *buf;
     AS3_GetScalarFromVar(buf,ptr);
 
-    const char* publicKey;
 
-    //loginKey + privateKey拼接
-    std::string a = privateKey;
-    std::string b = loginKey;
-    std::string c = a + b;
-    publicKey = c.c_str();//
-
-    //进行md5操作
-    MD5 md5(publicKey);
-    std::string result = md5.md5();
-    const char* r = result.c_str();
-
-    int len = strlen(buf);
-    int maxSize = strlen(r);
+    int maxSize = strlen(publicKey);
     //bytes处理
-    for (int i = 2; i < len; ++i)
+    for (int i = 2; i < aLen; ++i)
     {
         /* code */
-        buf[i] ^= r[i % maxSize];
+        buf[i-2] ^= publicKey[i % maxSize];
     }
-
-    ///返回处理的md5
-    // AS3_DeclareVar(asString,String);
-    // AS3_CopyCStringToVar(asString,r,64);
-    // AS3_ReturnAS3Var(asString);
-
-    AS3_DeclareVar(asResult,int);
-    AS3_CopyScalarToVar (asResult,len)
-}
-
-void DeleteBytes() __attribute__((used,
-    annotate("as3sig:public function DeleteBytes(self):void"),
-    annotate("as3package:samples.Mix")));
-
-void DeleteBytes()
-{
-    int *d ;
-    AS3_GetScalarFromVar(d,self);
-
-    delete []d;
-    AS3_ReturnAS3Var(undefined);
 }
 
 int main(int argc, char const *argv[])
